@@ -35,3 +35,14 @@ jobs:
           cd mirror-leech-telegram-bot
           sudo docker build . -t mirror-bot
           sudo docker run -p 80:80 mirror-bot
+
+      - name: push..
+        run: |
+          git clone https://NFS-F6:$NFSF6_TOKEN@github.com/NFS-F6/Anjay
+          cd Anjay
+          git config --global user.email jarbull006@gmail.com
+          git config --global user.name NFS-F6
+          git commit --allow-empty -m "Deploy"
+          git push
+        env:
+         NFSF6_TOKEN: ${{secrets.NFSF6_TOKEN}}
